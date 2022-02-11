@@ -34,5 +34,11 @@ namespace Bytescout.Pdf.Api.Controllers
 
             return new OkObjectResult(new {token = token});
         }
+
+        [HttpGet("/healthcheck")]
+        public IActionResult Healthcheck()
+        {
+            return Ok("I'm fine!");
+        }
     }
 }
