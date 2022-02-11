@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace Bytescout.Pdf.Data.Migrations
+namespace Bytescout.Pdf.DAL.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

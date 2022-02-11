@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Bytescout.Pdf.Data
+namespace Bytescout.Pdf.DAL.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
