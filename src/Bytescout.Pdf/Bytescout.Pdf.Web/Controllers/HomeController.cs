@@ -1,13 +1,9 @@
-﻿using Bytescout.Pdf.Models;
+﻿using System.Diagnostics;
+using Bytescout.Pdf.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Bytescout.Pdf.Controllers
+namespace Bytescout.Pdf.Web.Controllers
 {
     public class HomeController : Controller
     {

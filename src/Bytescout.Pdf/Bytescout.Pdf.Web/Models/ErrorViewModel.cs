@@ -1,6 +1,4 @@
-using System;
-
-namespace Bytescout.Pdf.Models
+namespace Bytescout.Pdf.Web.Models
 {
     public class ErrorViewModel
     {
