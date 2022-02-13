@@ -23,6 +23,7 @@ namespace Bytescout.Pdf.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen();
             services.AddTokenAuth(Configuration);
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -38,7 +39,14 @@ namespace Bytescout.Pdf.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseRouting();
