@@ -22,10 +22,10 @@ Just simple library project where _ApplicationDBContext_ can be shared between A
 
 ## ToDo improvements list
 There are many things to improve in current PoC implementation that did not fit in 5 hours of development:
+- ~~Add Swagger support for easier API testing~~ :heavy_check_mark:	
+- ~~Extend Swagger with Bearer token support~~ :heavy_check_mark:	
 - Add _UserManager_ for all operations with users in future
 - Add Configuration facade for all settings to make easier retrievement of appsettings in-code (no IConfiguration.GetSection usage)
 - Create separate BLL project to store Service logic. Keep controllers code clean and be responsible only for retrieving data, passing data to BLL and sending back the result of service execution
-- ~~Add Swagger support for easier API testing~~ :heavy_check_mark:	
-- Extend Swagger with Bearer token support
 - Add logger for exception logging
 - Add api key as user field. Use different user keys instead of default on requests to pdf.co
