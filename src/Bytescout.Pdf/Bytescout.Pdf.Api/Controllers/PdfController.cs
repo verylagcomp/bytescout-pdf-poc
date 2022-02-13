@@ -76,7 +76,7 @@ namespace Bytescout.Pdf.Api.Controllers
                 // TODO: log exception
             }
 
-            return null;
+            return Ok($"Parse completed. Please check \"result.json\" for results.");
         }
     }
 }
