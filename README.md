@@ -8,9 +8,14 @@ Signup/sign-in works with out of the box UI.
 In-memory database is used for easier development and presentation.
 
 ## Api
-Has token method. For PoC simplified version token can be retrieved by providing username.
 
-Has simple healthcheck endpoint as default launcher.
+### Token 
+Bearer token auth implemented. 
+For PoC simplified version token can be retrieved by providing username only.
+
+### ParsePdfFromUrl
+Token need to be retrieved to access this method
+``Authorization: Bearer TOKEN`` header should be added to the request.
 
 ## DAL
 Just simple library project where _ApplicationDBContext_ can be shared between API and Web projects.
@@ -21,4 +26,6 @@ There are many things to improve in current PoC implementation that did not fit 
 - Add Configuration facade for all settings to make easier retrievement of appsettings in-code (no IConfiguration.GetSection usage)
 - Create separate BLL project to store Service logic. Keep controllers code clean and be responsible only for retrieving data, passing data to BLL and sending back the result of service execution
 - ~~Add Swagger support for easier API testing~~ :heavy_check_mark:	
+- Extend Swagger with Bearer token support
 - Add logger for exception logging
+- Add api key as user field. Use different user keys instead of default on requests to pdf.co
