@@ -79,6 +79,7 @@ namespace Bytescout.Pdf.Api.Controllers
             catch (WebException e)
             {
                 // TODO: log exception
+                return BadRequest(e);
             }
 
             return Ok($"Parse completed. Please check \"result.json\" for results.");
