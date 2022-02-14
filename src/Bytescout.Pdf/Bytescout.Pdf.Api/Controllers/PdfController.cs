@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using Bytescout.Pdf.Api.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -23,12 +24,16 @@ namespace Bytescout.Pdf.Api.Controllers
             _config = config;
         }
 
-        [HttpGet("parse")]
-        public async Task<IActionResult> ParsePdfFromUrl()
+        [HttpPost("parse")]
+        public async Task<IActionResult> ParsePdfFromUrl(ParsePdfDto dto)
         {
+            if (string.IsNullOrWhiteSpace(dto.SourceFileUrl))
+            {
+                // TODO: remove later. This is for PoC easier testing only purposes.
+                dto.SourceFileUrl = "https://bytescout-com.s3.amazonaws.com/files/demo-files/cloud-api/document-parser/MultiPageTable.pdf";
+            }
+            
             // TODO: move this method code to the separate service. Controllers should be small and clean without BLL.
-
-            const string sourceFileUrl = "https://bytescout-com.s3.amazonaws.com/files/demo-files/cloud-api/document-parser/MultiPageTable.pdf";
             const string destinationFile = @".\result.json";
             const string url = "https://api.pdf.co/v1/pdf/documentparser";
 
@@ -46,7 +51,7 @@ namespace Bytescout.Pdf.Api.Controllers
                 {
                     {"template", templateText},
                     {"name", Path.GetFileName(destinationFile)},
-                    {"url", sourceFileUrl}
+                    {"url", dto.SourceFileUrl}
                 };
 
                 // Convert dictionary of params to JSON
