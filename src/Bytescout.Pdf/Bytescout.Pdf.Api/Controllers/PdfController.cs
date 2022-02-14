@@ -70,19 +70,19 @@ namespace Bytescout.Pdf.Api.Controllers
 
                     // Download JSON file
                     webClient.DownloadFile(resultFileUrl, destinationFile);
+                    var bytes = webClient.DownloadData(resultFileUrl);
+                    return new FileContentResult(bytes, "application/json");
                 }
                 else
                 {
-                    Console.WriteLine(json["message"].ToString());
+                    return BadRequest(json["message"].ToString());
                 }
             }
             catch (WebException e)
             {
                 // TODO: log exception
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
-
-            return Ok($"Parse completed. Please check \"result.json\" for results.");
         }
     }
 }
