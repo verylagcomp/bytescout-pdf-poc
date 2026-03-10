@@ -1,31 +1,35 @@
-# PoC test task
+# PDF Document Parser — PoC
 
-This is a PoC implementation. 
-Solution splitted onto 3 projects: _Pdf.Api_, _Pdf.Web_ and _Pdf.DAL_.
+A proof-of-concept REST API for parsing PDF documents using [pdf.co](https://pdf.co) service.
 
-## Web
-Signup/sign-in works with out of the box UI.
-In-memory database is used for easier development and presentation.
+Built with ASP.NET Core, JWT Bearer authentication, and a clean multi-project architecture.
 
-## Api
+## Architecture
 
-### Token 
-Bearer token auth implemented. 
-For PoC simplified version token can be retrieved by providing username only.
+Solution is split into 3 projects:
+
+- **Pdf.Api** — REST API with JWT Bearer auth, Swagger UI, PDF parsing endpoint
+- **Pdf.Web** — MVC web app with signup/sign-in (Identity, in-memory DB)
+- **Pdf.DAL** — Shared `ApplicationDbContext` between API and Web
+
+## API Endpoints
+
+### Token
+Bearer token auth. For PoC, a simplified token can be retrieved by providing username only.
 
 ### ParsePdfFromUrl
-Token need to be retrieved to access this method
-``Authorization: Bearer TOKEN`` header should be added to the request.
+Requires `Authorization: Bearer TOKEN` header. Sends PDF URL to pdf.co for parsing and returns structured result.
 
-## DAL
-Just simple library project where _ApplicationDBContext_ can be shared between API and Web projects.
+## Tech Stack
 
-## ToDo improvements list
-There are many things to improve in current PoC implementation that did not fit in 5 hours of development:
-- ~~Add Swagger support for easier API testing~~ :heavy_check_mark:	
-- ~~Extend Swagger with Bearer token support~~ :heavy_check_mark:	
-- Add _UserManager_ for all operations with users in future
-- Add Configuration facade for all settings to make easier retrievement of appsettings in-code (no IConfiguration.GetSection usage)
-- Create separate BLL project to store Service logic. Keep controllers code clean and be responsible only for retrieving data, passing data to BLL and sending back the result of service execution
-- Add logger for exception logging
-- Add api key as user field. Use different user keys instead of default on requests to pdf.co
+- ASP.NET Core
+- Entity Framework Core (in-memory for PoC)
+- JWT Bearer Authentication
+- Swagger / OpenAPI
+- pdf.co API integration
+
+## Setup
+
+1. Add your pdf.co API key to `appsettings.json` → `PdfConfig:DefaultApiKey`
+2. Add your JWT secret to `appsettings.json` → `JwtConfig:secret`
+3. Run the API project: `dotnet run --project src/Bytescout.Pdf/Bytescout.Pdf.Api`
